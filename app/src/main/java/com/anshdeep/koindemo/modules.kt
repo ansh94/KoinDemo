@@ -9,5 +9,10 @@ import org.koin.dsl.module.module
 
 val applicationModule = module {
     // Singleton Dependency
+    // same instance will be used every time
     single { Gson() }
+
+    // Factory Dependency
+    // new instance of the definition will be defined each time
+    factory { CurrenciesAdapter() }
 }
