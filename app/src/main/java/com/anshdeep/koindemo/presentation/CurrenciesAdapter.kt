@@ -1,10 +1,10 @@
-package com.anshdeep.koindemo
+package com.anshdeep.koindemo.presentation
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import com.anshdeep.koindemo.R
 import com.anshdeep.koindemo.model.Currency
 
 /**
@@ -12,7 +12,7 @@ import com.anshdeep.koindemo.model.Currency
  */
 class CurrenciesAdapter : RecyclerView.Adapter<CurrenciesAdapter.ViewHolder>() {
 
-    val currencies: List<Currency> = arrayListOf()
+    var currencies: List<Currency> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -25,13 +25,10 @@ class CurrenciesAdapter : RecyclerView.Adapter<CurrenciesAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currency = currencies[position]
-        holder.nameText.text = currency.name
-        holder.symbolText.text = currency.symbol
+        holder.currencyView.setCurrency(currencies[position])
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameText: TextView = view.findViewById(R.id.text_name)
-        val symbolText: TextView = view.findViewById(R.id.text_symbol)
+        val currencyView: CurrencyView = view.findViewById(R.id.view_currency)
     }
 }
