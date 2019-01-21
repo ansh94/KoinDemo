@@ -10,8 +10,8 @@ import android.support.v4.content.ContextCompat
  */
 class UrlHelper(private val baseUrl: String) {
 
-    fun launchCurrencyUrl(context: Context, slug: String){
-        launchUrl(context,Uri.parse("$baseUrl$slug"))
+    fun launchCurrencyUrl(context: Context, slug: String) {
+        launchUrl(context, Uri.parse("$baseUrl$slug"))
     }
 
     fun launchUrl(context: Context, uri: Uri) {

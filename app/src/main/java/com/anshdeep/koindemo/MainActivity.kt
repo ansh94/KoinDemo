@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     // val dataRepositoryFactory: DataRepositoryFactory by inject()
 
+    // Injection parameters - allow us to inject value into the definition
     val currenciesViewModel: CurrenciesViewModel by viewModel {
         val currenciesJson = resources.openRawResource(R.raw.currencies)
             .bufferedReader().use { it.readText() }
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Injected dependencies will last until onDestroy(by default) is triggered
         bindScope(getOrCreateScope("browse"))
 
         setupCurrenciesRecycler()
@@ -43,10 +45,6 @@ class MainActivity : AppCompatActivity() {
                 currenciesAdapter.currencies = it
             }
         })
-
-
-//        val items = dataRepositoryFactory.retreiveLocalSource().getCurrencies(currenciesJson)
-//        currenciesAdapter.currencies = items
 
         currenciesViewModel.retreiveCurrencies()
     }
